@@ -68,6 +68,8 @@ ClaudeDeck/
 
 需要本地已安装 Go 1.21+ 和 Node.js（前端使用 pnpm）。
 
+首次下载项目后，建议先看快速启动文档：[QUICKSTART.md](./QUICKSTART.md)。
+
 ```bash
 # 一键启动
 ./dev.sh
