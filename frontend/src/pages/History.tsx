@@ -83,11 +83,11 @@ export default function History() {
                       onClick={() => setOpenSess(o => ({ ...o, [key]: !isOpen }))}
                     >
                       <div className="history-session-info">
+                        <div className="history-session-id">
+                          <span>{s.sessionId.slice(0, 8)}</span><span style={{marginLeft: '12px'}}>[{fmtTime(s.startTs)}–{fmtTime(s.endTs)}]</span>
+                        </div>
                         <div className="history-session-project" title={s.project}>
                           {s.project}
-                        </div>
-                        <div className="history-session-id">
-                          {s.sessionId.slice(0, 8)} · {fmtTime(s.startTs)} – {fmtTime(s.endTs)}
                         </div>
                       </div>
                       <span className="history-session-count">

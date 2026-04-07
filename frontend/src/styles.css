@@ -73,8 +73,9 @@ th { background: #fafafa; font-weight: 600; }
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-top: 6px;
 }
-.history-session-id { font-size: 11px; color: #9ca3af; font-family: monospace; }
+.history-session-id { font-size: 12px; color: #555555; font-family: monospace; }
 .history-session-count { color: #6b7280; font-size: 12px; }
 .history-entry-table { margin: 0; }
 .history-entry-time { width: 80px; }
