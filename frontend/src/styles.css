@@ -42,6 +42,44 @@ th { background: #fafafa; font-weight: 600; }
 }
 .stat .label { font-size: 12px; color: #6b7280; }
 .stat .value { font-size: 20px; font-weight: 600; margin-top: 4px; }
+.loading { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 32px; color: #6b7280; font-size: 14px; }
+.spinner {
+  width: 20px; height: 20px;
+  border: 2px solid #e5e7eb;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* 历史记录页样式 */
+.history-day-header { cursor: pointer; display: flex; justify-content: space-between; }
+.history-day-meta { color: #6b7280; }
+.history-session-list { margin-top: 12px; display: flex; flex-direction: column; gap: 10px; }
+.history-session { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+.history-session-header {
+  cursor: pointer;
+  padding: 8px 12px;
+  background: #f9fafb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.history-session-info { min-width: 0; flex: 1; }
+.history-session-project {
+  font-size: 12px;
+  color: #6b7280;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.history-session-id { font-size: 11px; color: #9ca3af; font-family: monospace; }
+.history-session-count { color: #6b7280; font-size: 12px; }
+.history-entry-table { margin: 0; }
+.history-entry-time { width: 80px; }
+.history-entry-content { white-space: pre-wrap; font-size: 13px; }
+
 pre {
   background: #0f172a;
   color: #e2e8f0;

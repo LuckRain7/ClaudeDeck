@@ -54,71 +54,53 @@ export default function History() {
   return (
     <>
       <h2>历史记录（按会话）</h2>
+      {/* 按天分组渲染，每一天是一个可折叠的卡片 */}
       {grouped.map(day => (
         <div className="card" key={day.date}>
+          {/* 日期头部：点击切换当天的展开/收起 */}
           <div
-            style={{ cursor: 'pointer', display: 'flex', justifyContent: 'space-between' }}
+            className="history-day-header"
             onClick={() => setOpenDay(o => ({ ...o, [day.date]: !o[day.date] }))}
           >
             <strong>{day.date}</strong>
-            <span style={{ color: '#6b7280' }}>
+            <span className="history-day-meta">
               {day.sessions.length} 个会话 · {day.count} 条 {openDay[day.date] ? '▾' : '▸'}
             </span>
           </div>
 
+          {/* 展开当天后渲染该日下属的会话列表 */}
           {openDay[day.date] && (
-            <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <div className="history-session-list">
               {day.sessions.map(s => {
+                // 用「日期 + 会话 ID」作为唯一 key，避免跨天会话相互影响
                 const key = day.date + '/' + s.sessionId
                 const isOpen = openSess[key] ?? false
                 return (
-                  <div
-                    key={key}
-                    style={{
-                      border: '1px solid #e5e7eb',
-                      borderRadius: 8,
-                      overflow: 'hidden',
-                    }}
-                  >
+                  <div className="history-session" key={key}>
+                    {/* 会话头部：展示项目路径 / 会话 ID / 起止时间，点击切换条目列表 */}
                     <div
-                      style={{
-                        cursor: 'pointer',
-                        padding: '8px 12px',
-                        background: '#f9fafb',
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        gap: 12,
-                      }}
+                      className="history-session-header"
                       onClick={() => setOpenSess(o => ({ ...o, [key]: !isOpen }))}
                     >
-                      <div style={{ minWidth: 0, flex: 1 }}>
-                        <div
-                          style={{
-                            fontSize: 12,
-                            color: '#6b7280',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap',
-                          }}
-                          title={s.project}
-                        >
+                      <div className="history-session-info">
+                        <div className="history-session-project" title={s.project}>
                           {s.project}
                         </div>
-                        <div style={{ fontSize: 11, color: '#9ca3af', fontFamily: 'monospace' }}>
+                        <div className="history-session-id">
                           {s.sessionId.slice(0, 8)} · {fmtTime(s.startTs)} – {fmtTime(s.endTs)}
                         </div>
                       </div>
-                      <span style={{ color: '#6b7280', fontSize: 12 }}>
+                      <span className="history-session-count">
                         {s.entries.length} 条 {isOpen ? '▾' : '▸'}
                       </span>
                     </div>
 
+                    {/* 展开会话后渲染条目明细表，过长内容截断到 300 字符 */}
                     {isOpen && (
-                      <table style={{ margin: 0 }}>
+                      <table className="history-entry-table">
                         <thead>
                           <tr>
-                            <th style={{ width: 80 }}>时间</th>
+                            <th className="history-entry-time">时间</th>
                             <th>内容</th>
                           </tr>
                         </thead>
@@ -126,7 +108,7 @@ export default function History() {
                           {s.entries.map(e => (
                             <tr key={e.sessionId + e.timestamp}>
                               <td>{fmtTime(e.timestamp)}</td>
-                              <td style={{ whiteSpace: 'pre-wrap', fontSize: 13 }}>
+                              <td className="history-entry-content">
                                 {e.display.length > 300 ? e.display.slice(0, 300) + '…' : e.display}
                               </td>
                             </tr>
