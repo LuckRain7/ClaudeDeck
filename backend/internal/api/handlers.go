@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"cc-look/backend/internal/claudedir"
+	"ClaudeDeck/backend/internal/claudedir"
 )
 
 func writeJSON(w http.ResponseWriter, status int, v any) {

@@ -32,7 +32,7 @@
 ## 目录结构
 
 ```
-cc-look/
+ClaudeDeck/
 ├── dev.sh                    # 一键启动前后端
 ├── backend/                  # Go 后端，监听 :7788
 │   ├── go.mod
